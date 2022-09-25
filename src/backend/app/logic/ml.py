@@ -1,9 +1,10 @@
 import requests
 from typing import List
 from pydantic import ValidationError
-from schemas import Sentence, SentenceResponse, Post
 
-ML_API_ENDPOINT = 'http://localhost:5001'
+from app.schemas import Sentence, SentenceResponse, Post
+
+ML_API_ENDPOINT = 'http://ml:5001/api/v1'
 
 class ML_Exception(Exception):
     pass
@@ -31,7 +32,7 @@ def analyse_sentence(sentence: str) -> SentenceResponse:
         fragment = sentence
     )
 
-    resp = requests.post(url, data=sentence.dict())
+    resp = requests.post(url, json=sentence.dict())
 
     if resp.status_code != 200:
         raise ML_Exception(f"Unable to retrieve ML result: {resp.text}")

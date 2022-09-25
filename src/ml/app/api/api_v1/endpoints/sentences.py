@@ -7,7 +7,7 @@ from app import ml, schemas
 router = APIRouter()
 
 
-@router.post("/", response_model=schemas.Sentence)
+@router.post("/", response_model=schemas.SentenceResponse)
 def sentence_check(
     *,
     sentence: schemas.Sentence,

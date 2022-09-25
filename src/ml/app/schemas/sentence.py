@@ -8,3 +8,5 @@ class Sentence(BaseModel):
     fragment: str
 
 
+class SentenceResponse(BaseModel):
+    has_foul_language: bool

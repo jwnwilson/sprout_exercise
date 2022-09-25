@@ -14,6 +14,8 @@ services:
     volumes:
       - ./src/backend:/src
     command: "uvicorn app.main:app --host 0.0.0.0 --port 5000 --reload --debug"
+    depends_on:
+      - ml
   ml:
     build:
       context: ./src/ml

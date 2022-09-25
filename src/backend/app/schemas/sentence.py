@@ -9,4 +9,4 @@ class Sentence(BaseModel):
 
 
 class SentenceResponse(BaseModel):
-    hasFoulLanguage: bool
+    has_foul_language: bool
