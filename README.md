@@ -24,6 +24,4 @@ https://github.com/tiangolo/full-stack-fastapi-postgresql
 
 
 To do:
-- use tenacity on backend -> ML
-- use async / greenlets on the backend -> ML calls
 - functional tests

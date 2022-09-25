@@ -12,6 +12,8 @@ COPY ./pyproject.toml ./poetry.lock* /src/
 
 # Allow installing dev dependencies to run tests
 ARG INSTALL_DEV=false
+# Increase this to allow more parallel ML queries
+ARG WORKERS=8
 RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
 # Prophanity filter dependency
 RUN python -m spacy download en
@@ -19,4 +21,4 @@ RUN python -m spacy download en
 COPY . /src/
 ENV PYTHONPATH=/src/
 
-CMD "uvicorn main:app --host 0.0.0.0 --port 5001"
+CMD "uvicorn main:app --workers $WORKERS --host 0.0.0.0 --port 5001"

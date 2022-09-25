@@ -29,5 +29,5 @@ services:
       - 0.0.0.0:5001:5001
     volumes:
       - ./src/ml:/src
-    command: "uvicorn app.main:app --host 0.0.0.0 --port 5001 --reload --debug"
+    command: "uvicorn app.main:app --workers 8 --host 0.0.0.0 --port 5001"
     
