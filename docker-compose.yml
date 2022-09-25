@@ -1,0 +1,31 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./src/backend
+      dockerfile: ./Dockerfile
+    tty: true
+    env_file:
+      - .env
+    expose:
+      - "5000"
+    ports:
+      - 0.0.0.0:5000:5000
+    volumes:
+      - ./src/backend:/src
+    command: "uvicorn app.main:app --host 0.0.0.0 --port 5000 --reload --debug"
+  ml:
+    build:
+      context: ./src/ml
+      dockerfile: ./Dockerfile
+    tty: true
+    env_file:
+      - .env
+    expose:
+      - "5001"
+    ports:
+      - 0.0.0.0:5001:5001
+    volumes:
+      - ./src/ml:/src
+    command: "uvicorn app.main:app --host 0.0.0.0 --port 5001 --reload --debug"
+    
